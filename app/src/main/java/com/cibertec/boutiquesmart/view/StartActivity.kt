@@ -19,6 +19,7 @@ const val USERNAME = "com.cibertec.activity.USERNAME" //ubicacion donde el bundl
 const val PRODUCTID = "com.cibertec.activity.PRODUCTID" //ubicacion donde el bundle guardara variable
 
 class StartActivity : AppCompatActivity() {
+    private lateinit var dbHelper: BaseDatos
     private lateinit var inp_username: EditText
     private lateinit var inp_password: EditText
     private lateinit var btn_login: Button
@@ -28,6 +29,7 @@ class StartActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_start)
+        dbHelper = BaseDatos(this)
 
         inp_username = findViewById(R.id.start_input_username)
         inp_password = findViewById(R.id.start_input_password)
@@ -66,6 +68,7 @@ class StartActivity : AppCompatActivity() {
     }
 
     fun iniciarSesion(username: EditText, password: EditText) {
+        if(dbHelper.)
         Firebase.auth.signInWithEmailAndPassword(
             username.text.toString(),
             password.text.toString()

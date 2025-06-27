@@ -1,126 +1,210 @@
 package com.cibertec.boutiquesmart.controller
 
+import android.content.ContentValues
+import android.content.Context
+import android.database.sqlite.SQLiteDatabase
+import android.database.sqlite.SQLiteOpenHelper
 import com.cibertec.boutiquesmart.R
-import com.cibertec.boutiquesmart.model.Category
-import com.cibertec.boutiquesmart.model.Product
-import com.cibertec.boutiquesmart.model.RegisteredUser
-import com.cibertec.boutiquesmart.model.Store
 
-class BaseDatos {
+class BaseDatos(context: Context) : SQLiteOpenHelper(context, "boutique.db", null, 1) {
+
+    override fun onCreate(db: SQLiteDatabase) {
+        db.execSQL("""
+            CREATE TABLE categories (
+                id INTEGER PRIMARY KEY,
+                name TEXT
+            )
+        """)
+
+        db.execSQL("""
+            CREATE TABLE products (
+                id INTEGER PRIMARY KEY,
+                name TEXT,
+                category_id INTEGER,
+                color TEXT,
+                price REAL,
+                imageResId INTEGER,
+                stock_s INTEGER,
+                stock_m INTEGER,
+                stock_x INTEGER,
+                FOREIGN KEY(category_id) REFERENCES categories(id)
+            )
+        """)
+
+        db.execSQL("""
+            CREATE TABLE users (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                username TEXT,
+                email TEXT,
+                password TEXT
+            )
+        """)
+
+        db.execSQL("CREATE TABLE cart (user_id INTEGER, product_id INTEGER)")
+        db.execSQL("CREATE TABLE favorites (user_id INTEGER, product_id INTEGER)")
+        db.execSQL("CREATE TABLE address (user_id INTEGER PRIMARY KEY, address TEXT)")
+        db.execSQL("CREATE TABLE payment (user_id INTEGER PRIMARY KEY, debit TEXT, credit TEXT)")
+    }
+
+    override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
+        db.execSQL("DROP TABLE IF EXISTS categories")
+        db.execSQL("DROP TABLE IF EXISTS products")
+        db.execSQL("DROP TABLE IF EXISTS users")
+        db.execSQL("DROP TABLE IF EXISTS cart")
+        db.execSQL("DROP TABLE IF EXISTS favorites")
+        db.execSQL("DROP TABLE IF EXISTS address")
+        db.execSQL("DROP TABLE IF EXISTS payment")
+        onCreate(db)
+    }
+
     companion object Base {
-        private val myStore = Store("MODA Store")
-
-        private var idProduct = 1
-        private var idCategory = 1
-
-        fun start(): Store {
-            setCategory()
-            setProducts()
-            setUsers()
-            setShoppingCart()
-            setFavorites()
-            setAddress()
-            setPaymentMethod()
-            return myStore
+        fun start(context: Context) {
+            val db = BaseDatos(context).writableDatabase
+            setCategory(db)
+            setProducts(db)
+            setUsers(db)
+            setShoppingCart(db)
+            setFavorites(db)
+            setAddress(db)
+            setPaymentMethod(db)
         }
 
-        private fun setCategory() {
-            myStore.addCategory(Category(idCategory++,"Dama"))
-            myStore.addCategory(Category(idCategory++,"Caballero"))
+        private fun setCategory(db: SQLiteDatabase) {
+            val categories = listOf("Dama", "Caballero")
+            categories.forEachIndexed { index, name ->
+                val values = ContentValues().apply {
+                    put("id", index + 1)
+                    put("name", name)
+                }
+                db.insert("categories", null, values)
+            }
         }
 
-        private fun setProducts() {
-            val category = myStore.catalogCategory
-            //Dama
-            myStore.addProduct(Product(idProduct++,"Blusa estampada",category[0],"Blanca",130F, R.drawable.productm1, mapOf("S" to 100, "M" to 50, "X" to 100)))
-            myStore.addProduct(Product(idProduct++,"Blusa de tirantes",category[0],"Blanco",300F, R.drawable.productm2, mapOf("S" to 100, "M" to 50, "X" to 100)))
-            myStore.addProduct(Product(idProduct++,"Crop top con letras",category[0],"Gris",350F, R.drawable.productm3, mapOf("S" to 100, "M" to 50, "X" to 100)))
-            myStore.addProduct(Product(idProduct++,"Vestido largo", category[0],"Verde",900F, R.drawable.productm4, mapOf("S" to 100, "M" to 50, "X" to 100)))
-            myStore.addProduct(Product(idProduct++,"Vestido de fiesta",category[0],"Aqua",400F, R.drawable.productm5, mapOf("S" to 100, "M" to 50, "X" to 100)))
-            myStore.addProduct(Product(idProduct++,"Short de mezclilla",category[0],"Azul claro",150F, R.drawable.productm6, mapOf("S" to 100, "M" to 50, "X" to 100)))
-            myStore.addProduct(Product(idProduct++,"Falda de flores",category[0],"Rosa",200F, R.drawable.productm7, mapOf("S" to 100, "M" to 50, "X" to 100)))
-            myStore.addProduct(Product(idProduct++,"Pantalon de mezclilla",category[0],"Azul",350F, R.drawable.productm8, mapOf("S" to 100, "M" to 50, "X" to 100)))
-            myStore.addProduct(Product(idProduct++,"Pantalon formal",category[0],"Azul",400F, R.drawable.productm9, mapOf("S" to 100, "M" to 50, "X" to 100)))
-            myStore.addProduct(Product(idProduct++,"Top con cuello",category[0],"Lila",150F, R.drawable.productm10, mapOf("S" to 100, "M" to 50, "X" to 100)))
-            // Caballero
-            myStore.addProduct(Product(idProduct++,"Sudadera",category[1],"Lila",250F, R.drawable.producth1, mapOf("S" to 100, "M" to 50, "X" to 100)))
-            myStore.addProduct(Product(idProduct++,"Pantalon de mezclilla",category[1],"Azul",400F, R.drawable.producth2, mapOf("S" to 100, "M" to 50, "X" to 100)))
-            myStore.addProduct(Product(idProduct++,"Camisa rayada",category[1],"Blanco",80F, R.drawable.producth3, mapOf("S" to 100, "M" to 50, "X" to 100)))
-            myStore.addProduct(Product(idProduct++,"Pants",category[1],"Gris",120F, R.drawable.producth4, mapOf("S" to 100, "M" to 50, "X" to 100)))
-            myStore.addProduct(Product(idProduct++,"Bermuda",category[1],"Caqui",250F, R.drawable.producth5,  mapOf("S" to 100, "M" to 50, "X" to 100)))
-            myStore.addProduct(Product(idProduct++,"Set pijama",category[1],"Gris/azul",250F, R.drawable.producth6, mapOf("S" to 100, "M" to 50, "X" to 100)))
-            myStore.addProduct(Product(idProduct++,"Playera animado",category[1],"Beige",150F, R.drawable.producth7, mapOf("S" to 100, "M" to 50, "X" to 100)))
-            myStore.addProduct(Product(idProduct++,"Jersey tejido",category[1],"Gris",180F, R.drawable.producth8 , mapOf("S" to 100, "M" to 50, "X" to 100)))
-            myStore.addProduct(Product(idProduct++,"Pantalon a medida",category[1],"Azul",320F, R.drawable.producth9, mapOf("S" to 100, "M" to 50, "X" to 100)))
-            myStore.addProduct(Product(idProduct++,"Camisa vaquera",category[1],"Azul",180F, R.drawable.producth10,mapOf("S" to 100, "M" to 50, "X" to 100)))
+        private fun setProducts(db: SQLiteDatabase) {
+            var idProduct = 1
+            val dama = 1
+            val caballero = 2
+            val products = listOf(
+                Triple("Blusa estampada", R.drawable.productm1, dama),
+                Triple("Blusa de tirantes", R.drawable.productm2, dama),
+                Triple("Crop top con letras", R.drawable.productm3, dama),
+                Triple("Vestido largo", R.drawable.productm4, dama),
+                Triple("Vestido de fiesta", R.drawable.productm5, dama),
+                Triple("Short de mezclilla", R.drawable.productm6, dama),
+                Triple("Falda de flores", R.drawable.productm7, dama),
+                Triple("Pantalon de mezclilla", R.drawable.productm8, dama),
+                Triple("Pantalon formal", R.drawable.productm9, dama),
+                Triple("Top con cuello", R.drawable.productm10, dama),
+
+                Triple("Sudadera", R.drawable.producth1, caballero),
+                Triple("Pantalon de mezclilla", R.drawable.producth2, caballero),
+                Triple("Camisa rayada", R.drawable.producth3, caballero),
+                Triple("Pants", R.drawable.producth4, caballero),
+                Triple("Bermuda", R.drawable.producth5, caballero),
+                Triple("Set pijama", R.drawable.producth6, caballero),
+                Triple("Playera animado", R.drawable.producth7, caballero),
+                Triple("Jersey tejido", R.drawable.producth8, caballero),
+                Triple("Pantalon a medida", R.drawable.producth9, caballero),
+                Triple("Camisa vaquera", R.drawable.producth10, caballero)
+            )
+            val color = "Azul"
+            val price = 100f
+            for ((name, img, categoryId) in products) {
+                val values = ContentValues().apply {
+                    put("id", idProduct++)
+                    put("name", name)
+                    put("category_id", categoryId)
+                    put("color", color)
+                    put("price", price)
+                    put("imageResId", img)
+                    put("stock_s", 100)
+                    put("stock_m", 50)
+                    put("stock_x", 100)
+                }
+                db.insert("products", null, values)
+            }
         }
 
-        private fun setUsers() {
-            myStore.addUser(RegisteredUser(myStore.catalogProduct.size, "tomas11", "tomas@hotmail.com", "123"))
-            myStore.addUser(RegisteredUser(myStore.catalogProduct.size, "didier32", "didier@hotmail.com", "1234"))
-            myStore.addUser(RegisteredUser(myStore.catalogProduct.size, "josearm21", "josearmando@outlook.es", "12345"))
-            myStore.addUser(RegisteredUser(myStore.catalogProduct.size, "maribel07", "maribel@live.com", "123456"))
+        private fun setUsers(db: SQLiteDatabase) {
+            val users = listOf(
+                Triple("tomas11", "tomas@hotmail.com", "123"),
+                Triple("didier32", "didier@hotmail.com", "1234"),
+                Triple("josearm21", "josearmando@outlook.es", "12345"),
+                Triple("maribel07", "maribel@live.com", "123456")
+            )
+            for ((username, email, pass) in users) {
+                val values = ContentValues().apply {
+                    put("username", username)
+                    put("email", email)
+                    put("password", pass)
+                }
+                db.insert("users", null, values)
+            }
         }
 
-        private fun setShoppingCart() {
-            // User: tomas11
-            myStore.listOfUsers[0].addToCart(myStore.catalogProduct[10])
-            myStore.listOfUsers[0].addToCart(myStore.catalogProduct[11])
-            myStore.listOfUsers[0].addToCart(myStore.catalogProduct[12])
-            myStore.listOfUsers[0].addToCart(myStore.catalogProduct[13])
-
-            // User: didier32
-            myStore.listOfUsers[1].addToCart(myStore.catalogProduct[14])
-            myStore.listOfUsers[1].addToCart(myStore.catalogProduct[15])
-
-
-            // User: josearm21
-            myStore.listOfUsers[2].addToCart(myStore.catalogProduct[16])
-            myStore.listOfUsers[2].addToCart(myStore.catalogProduct[17])
-            myStore.listOfUsers[2].addToCart(myStore.catalogProduct[18])
-
-            // User: maribel07
-            myStore.listOfUsers[3].addToCart(myStore.catalogProduct[1])
-            myStore.listOfUsers[3].addToCart(myStore.catalogProduct[2])
-            myStore.listOfUsers[3].addToCart(myStore.catalogProduct[3])
+        private fun setShoppingCart(db: SQLiteDatabase) {
+            val cart = listOf(
+                0 to listOf(10, 11, 12, 13),
+                1 to listOf(14, 15),
+                2 to listOf(16, 17, 18),
+                3 to listOf(1, 2, 3)
+            )
+            cart.forEach { (userId, products) ->
+                products.forEach { pid ->
+                    val values = ContentValues().apply {
+                        put("user_id", userId)
+                        put("product_id", pid)
+                    }
+                    db.insert("cart", null, values)
+                }
+            }
         }
 
-        private fun setFavorites() {
-            // User: tomas11
-            myStore.listOfUsers[0].addToFavorite(myStore.catalogProduct[18])
-            myStore.listOfUsers[0].addToFavorite(myStore.catalogProduct[19])
-
-            // User: didier32
-            myStore.listOfUsers[1].addToFavorite(myStore.catalogProduct[10])
-            myStore.listOfUsers[1].addToFavorite(myStore.catalogProduct[11])
-
-            // User: josearm21
-            myStore.listOfUsers[2].addToFavorite(myStore.catalogProduct[12])
-            myStore.listOfUsers[2].addToFavorite(myStore.catalogProduct[14])
-            myStore.listOfUsers[2].addToFavorite(myStore.catalogProduct[15])
-
-            // User: maribel07
-            myStore.listOfUsers[3].addToFavorite(myStore.catalogProduct[5])
-            myStore.listOfUsers[3].addToFavorite(myStore.catalogProduct[6])
-            myStore.listOfUsers[3].addToFavorite(myStore.catalogProduct[7])
-            myStore.listOfUsers[3].addToFavorite(myStore.catalogProduct[8])
+        private fun setFavorites(db: SQLiteDatabase) {
+            val favs = listOf(
+                0 to listOf(18, 19),
+                1 to listOf(10, 11),
+                2 to listOf(12, 14, 15),
+                3 to listOf(5, 6, 7, 8)
+            )
+            favs.forEach { (userId, products) ->
+                products.forEach { pid ->
+                    val values = ContentValues().apply {
+                        put("user_id", userId)
+                        put("product_id", pid)
+                    }
+                    db.insert("favorites", null, values)
+                }
+            }
         }
 
-        private fun setAddress() {
-            // User: tomas11
-            myStore.listOfUsers[0].setAddress("Francisco Zarco 592, Mexico, Durango, Lerdo, 35150")
-
-            // User: didier32
-            myStore.listOfUsers[1].setAddress("Miguel Aleman 119, Mexico, Jalisco, Guadalajara, 21170")
+        private fun setAddress(db: SQLiteDatabase) {
+            val address = mapOf(
+                0 to "Francisco Zarco 592, Mexico, Durango, Lerdo, 35150",
+                1 to "Miguel Aleman 119, Mexico, Jalisco, Guadalajara, 21170"
+            )
+            address.forEach { (uid, addr) ->
+                val values = ContentValues().apply {
+                    put("user_id", uid)
+                    put("address", addr)
+                }
+                db.insert("address", null, values)
+            }
         }
 
-        private fun setPaymentMethod() {
-            // User: tomas11
-            myStore.listOfUsers[0].setDebitCard("1234567890123456")
-            myStore.listOfUsers[0].setCreditCard("1234567890123457")
-
-            // User: josearm21
-            myStore.listOfUsers[2].setCreditCard("1234567890123458")
+        private fun setPaymentMethod(db: SQLiteDatabase) {
+            val payment = mapOf(
+                0 to Pair("1234567890123456", "1234567890123457"),
+                2 to Pair("", "1234567890123458")
+            )
+            payment.forEach { (uid, cards) ->
+                val values = ContentValues().apply {
+                    put("user_id", uid)
+                    put("debit", cards.first)
+                    put("credit", cards.second)
+                }
+                db.insert("payment", null, values)
+            }
         }
     }
 }
