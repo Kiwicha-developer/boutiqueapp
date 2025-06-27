@@ -13,6 +13,7 @@ import android.transition.Slide
 import android.view.Gravity
 import android.view.Menu
 import android.widget.Button
+import androidx.activity.R
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
