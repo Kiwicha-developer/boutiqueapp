@@ -59,6 +59,7 @@ dependencies {
 
     implementation("androidx.media:media:1.6.0")
     implementation ("com.flaviofaria:kenburnsview:1.0.7")
+    implementation ("com.squareup.picasso:picasso:2.71828")
 
 
     configurations.all{

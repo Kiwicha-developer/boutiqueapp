@@ -5,10 +5,13 @@ import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import com.cibertec.boutiquesmart.R
+import com.cibertec.boutiquesmart.model.Category
+import com.cibertec.boutiquesmart.model.Product
 
 class BaseDatos(context: Context) : SQLiteOpenHelper(context, "boutique.db", null, 1) {
 
     override fun onCreate(db: SQLiteDatabase) {
+
         db.execSQL("""
             CREATE TABLE categories (
                 id INTEGER PRIMARY KEY,
@@ -23,7 +26,7 @@ class BaseDatos(context: Context) : SQLiteOpenHelper(context, "boutique.db", nul
                 category_id INTEGER,
                 color TEXT,
                 price REAL,
-                imageResId INTEGER,
+                image INTEGER,
                 stock_s INTEGER,
                 stock_m INTEGER,
                 stock_x INTEGER,
@@ -59,6 +62,7 @@ class BaseDatos(context: Context) : SQLiteOpenHelper(context, "boutique.db", nul
 
     companion object Base {
         fun start(context: Context) {
+            context.deleteDatabase("boutique.db") // borra la base anterior
             val db = BaseDatos(context).writableDatabase
             setCategory(db)
             setProducts(db)
@@ -107,8 +111,10 @@ class BaseDatos(context: Context) : SQLiteOpenHelper(context, "boutique.db", nul
                 Triple("Pantalon a medida", R.drawable.producth9, caballero),
                 Triple("Camisa vaquera", R.drawable.producth10, caballero)
             )
+
             val color = "Azul"
             val price = 100f
+
             for ((name, img, categoryId) in products) {
                 val values = ContentValues().apply {
                     put("id", idProduct++)
@@ -116,7 +122,7 @@ class BaseDatos(context: Context) : SQLiteOpenHelper(context, "boutique.db", nul
                     put("category_id", categoryId)
                     put("color", color)
                     put("price", price)
-                    put("imageResId", img)
+                    put("image", img) // <- CAMBIO aquí
                     put("stock_s", 100)
                     put("stock_m", 50)
                     put("stock_x", 100)
@@ -205,6 +211,66 @@ class BaseDatos(context: Context) : SQLiteOpenHelper(context, "boutique.db", nul
                 }
                 db.insert("payment", null, values)
             }
+        }
+
+        fun authLogin(context: Context, user: String, pass: String): Boolean {
+            val db = BaseDatos(context).readableDatabase
+
+            val query = "SELECT * FROM users WHERE username = ? AND password = ?"
+            val cursor = db.rawQuery(query, arrayOf(user, pass))
+
+            val isAuthenticated = cursor.count > 0
+            cursor.close()
+            db.close()
+            return isAuthenticated
+        }
+
+        fun getProducts(context: Context): List<Product> {
+            val db = BaseDatos(context).readableDatabase
+            val productList = mutableListOf<Product>()
+
+            val query = """
+                SELECT p.*, c.name as category_name 
+                FROM products p 
+                JOIN categories c ON p.category_id = c.id
+            """.trimIndent()
+
+            val cursor = db.rawQuery(query, null)
+
+            if (cursor.moveToFirst()) {
+                do {
+                    val id = cursor.getInt(cursor.getColumnIndexOrThrow("id"))
+                    val name = cursor.getString(cursor.getColumnIndexOrThrow("name"))
+                    val categoryId = cursor.getInt(cursor.getColumnIndexOrThrow("category_id"))
+                    val categoryName = cursor.getString(cursor.getColumnIndexOrThrow("category_name"))
+                    val color = cursor.getString(cursor.getColumnIndexOrThrow("color"))
+                    val price = cursor.getFloat(cursor.getColumnIndexOrThrow("price"))
+                    val image = cursor.getInt(cursor.getColumnIndexOrThrow("image"))
+                    val stockS = cursor.getInt(cursor.getColumnIndexOrThrow("stock_s"))
+                    val stockM = cursor.getInt(cursor.getColumnIndexOrThrow("stock_m"))
+                    val stockX = cursor.getInt(cursor.getColumnIndexOrThrow("stock_x"))
+
+                    val product = Product(
+                        idProduct = id,
+                        name = name,
+                        category = Category(categoryId, categoryName),
+                        color = color,
+                        price = price,
+                        image = image,
+                        quantity = mapOf(
+                            "S" to stockS,
+                            "M" to stockM,
+                            "X" to stockX
+                        )
+                    )
+
+                    productList.add(product)
+                } while (cursor.moveToNext())
+            }
+
+            cursor.close()
+            db.close()
+            return productList
         }
     }
 }

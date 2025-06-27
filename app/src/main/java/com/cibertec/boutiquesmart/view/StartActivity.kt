@@ -14,7 +14,7 @@ import com.cibertec.boutiquesmart.controller.BaseDatos
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 
-val MYSTORE = BaseDatos.start()
+
 const val USERNAME = "com.cibertec.activity.USERNAME" //ubicacion donde el bundle guardara variable
 const val PRODUCTID = "com.cibertec.activity.PRODUCTID" //ubicacion donde el bundle guardara variable
 
@@ -29,7 +29,7 @@ class StartActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_start)
-        dbHelper = BaseDatos(this)
+        BaseDatos.start(this)
 
         inp_username = findViewById(R.id.start_input_username)
         inp_password = findViewById(R.id.start_input_password)
@@ -68,21 +68,19 @@ class StartActivity : AppCompatActivity() {
     }
 
     fun iniciarSesion(username: EditText, password: EditText) {
-        if(dbHelper.)
-        Firebase.auth.signInWithEmailAndPassword(
-            username.text.toString(),
-            password.text.toString()
-        )
-            .addOnCompleteListener {
-                if (it.isSuccessful) {
-                    Toast.makeText(this, "INICIO DE SESIÓN EXITOSO", Toast.LENGTH_SHORT).show()
-                    val intent = Intent(this, HomeActivity::class.java)
-                    startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
-                } else {
-                    Toast.makeText(this, "ERROR: ${it.exception?.message}", Toast.LENGTH_SHORT).show()
-                }
-            }
+        val user = username.text.toString().trim()
+        val pass = password.text.toString().trim()
 
+        val exists = BaseDatos.authLogin(this, user, pass)
+        println("Login con usuario: $user y pass: $pass => Resultado: $exists")
+
+        if (exists) {
+            Toast.makeText(this, "INICIO DE SESIÓN EXITOSO", Toast.LENGTH_SHORT).show()
+            val intent = Intent(this, HomeActivity::class.java)
+            startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
+        } else {
+            Toast.makeText(this, "ERROR AL INICIAR SESIÓN", Toast.LENGTH_SHORT).show()
+        }
     }
 
     fun registrarse(username: EditText, password: EditText) {
