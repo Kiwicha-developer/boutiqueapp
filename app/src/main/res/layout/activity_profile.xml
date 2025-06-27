@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ProfileActivity">
+
+    <!-- Top Bar -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/profile_top_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#FFFFFF"
+        android:elevation="8dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:paddingHorizontal="32dp"
+        android:paddingVertical="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/profile_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:fontFamily="@font/nunito_regular"
+            android:text="@string/menu_cart"
+            android:textColor="#393E46"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageButton
+            android:id="@+id/profile_btn_config"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="@drawable/ic_settings"
+            android:scaleType="center"
+            android:onClick="showPopup"
+            android:contentDescription="@string/configuration"
+            android:padding="12dp"
+            app:layout_constraintBottom_toBottomOf="@+id/profile_title"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/profile_title" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- Favorite and Order buttons -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/profile_fav_order_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/profile_top_bar">
+
+        <ImageButton
+            android:id="@+id/profile_img_favorite"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="60dp"
+            android:background="@drawable/ic_favorite"
+            android:contentDescription="@string/favorite"
+            android:padding="8dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageButton
+            android:id="@+id/profile_img_history"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginEnd="60dp"
+            android:background="@drawable/ic_history"
+            android:contentDescription="@string/orders"
+            android:padding="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/nunitobold"
+            android:text="@string/favorite"
+            android:textColor="@color/blue"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="@+id/profile_img_favorite"
+            app:layout_constraintStart_toStartOf="@+id/profile_img_favorite"
+            app:layout_constraintTop_toBottomOf="@+id/profile_img_favorite" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/nunitobold"
+            android:text="@string/orders"
+            android:textColor="@color/blue"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="@+id/profile_img_history"
+            app:layout_constraintStart_toStartOf="@+id/profile_img_history"
+            app:layout_constraintTop_toBottomOf="@+id/profile_img_history" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- List -->
+    <ScrollView
+        android:id="@+id/scrollViewFavorites"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/profile_menu"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/profile_fav_order_bar">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/favoriteslist"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp" />
+        </LinearLayout>
+    </ScrollView>
+
+    <!-- Bottom Navigation -->
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/profile_menu"
+        android:layout_width="match_parent"
+        android:layout_height="75dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:menu="@menu/navigation_menu"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

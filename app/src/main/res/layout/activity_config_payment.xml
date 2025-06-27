@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/config_pay_top_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#FFFFFF"
+        android:elevation="8dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:paddingHorizontal="32dp"
+        android:paddingVertical="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <Button
+            android:id="@+id/config_pay_btn_return"
+            style="@style/returnButton"
+            android:layout_gravity="center_vertical"
+            android:minWidth="48dp"
+            android:minHeight="48dp"
+            android:contentDescription="@string/desc_back_button"
+            app:layout_constraintEnd_toStartOf="@+id/config_pay"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/config_pay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/nunito_regular"
+            android:text="@string/menu_payment"
+            android:textColor="#393E46"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+        android:id="@+id/config_pay_label_credit"
+        style="@style/config_account_label"
+        android:layout_marginTop="28dp"
+        android:layout_marginStart="32dp"
+        android:text="@string/creditCard"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/config_pay_top_bar" />
+
+    <Button
+        android:id="@+id/config_pay_btn_edit_credit"
+        style="@style/editButton"
+        android:layout_marginBottom="4dp"
+        android:layout_marginEnd="32dp"
+        android:minWidth="48dp"
+        android:minHeight="48dp"
+        android:contentDescription="@string/desc_edit_credit_card"
+        app:layout_constraintBottom_toTopOf="@+id/config_pay_input_credit"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/config_pay_label_credit" />
+
+    <EditText
+        android:id="@+id/config_pay_input_credit"
+        style="@style/config_account_field"
+        android:hint="@string/creditCard"
+        android:autofillHints="creditCardNumber"
+        android:inputType="number"
+        android:layout_marginHorizontal="32dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/config_pay_label_credit" />
+
+    <TextView
+        android:id="@+id/config_pay_label_debit"
+        style="@style/config_account_label"
+        android:layout_marginTop="28dp"
+        android:layout_marginStart="32dp"
+        android:text="@string/debitCard"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/config_pay_input_credit" />
+
+    <Button
+        android:id="@+id/config_pay_btn_edit_debit"
+        style="@style/editButton"
+        android:layout_marginBottom="4dp"
+        android:layout_marginEnd="32dp"
+        android:minWidth="48dp"
+        android:minHeight="48dp"
+        android:contentDescription="@string/desc_edit_debit_card"
+        app:layout_constraintBottom_toTopOf="@+id/config_pay_input_debit"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/config_pay_label_debit" />
+
+    <EditText
+        android:id="@+id/config_pay_input_debit"
+        style="@style/config_account_field"
+        android:hint="@string/debitCard"
+        android:autofillHints="creditCardNumber"
+        android:inputType="number"
+        android:layout_marginHorizontal="32dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/config_pay_label_debit" />
+
+    <Button
+        android:id="@+id/config_pay_btn_update"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:fontFamily="@font/nunitobold"
+        android:text="@string/btn_update"
+        android:visibility="invisible"
+        android:minWidth="48dp"
+        android:minHeight="48dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/config_pay_input_debit" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

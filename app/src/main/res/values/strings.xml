@@ -1,0 +1,78 @@
+<resources>
+    <string name="app_name">Smart Boutique</string>
+
+    <string name="menu_data">Cuenta</string>
+    <string name="menu_address">Dirección</string>
+    <string name="menu_payment">Métodos de pago</string>
+    <string name="menu_logout">Cerrar sesion</string>
+    <string name="menu_home">Inicio</string>
+    <string name="menu_cart">Carrito</string>
+    <string name="menu_profile">Perfil</string>
+
+    <string name="btn_logIn">Iniciar sesión</string>
+    <string name="btn_signIn">Registrarse</string>
+    <string name="btn_update">Actualizar</string>
+    <string name="btn_addCart">Agregar a carrito</string>
+    <string name="btn_getAddress">Obtener direccion</string>
+
+    <string name="username">Nombre de usuario</string>
+    <string name="email">Correo</string>
+    <string name="configuration">Configuracion</string>
+    <string name="telephone">Telefono</string>
+    <string name="password">Contraseña</string>
+    <string name="creditCard">Tarjeta de credito</string>
+    <string name="debitCard">Tarjeta de debito</string>
+    <string name="productname">Nombre del producto</string>
+    <string name="productprice">Precio del producto</string>
+    <string name="quantity">Cantidad</string>
+    <string name="community">Comunidad</string>
+
+    <string name="favorite">Favoritos</string>
+    <string name="orders">Compras</string>
+
+    <string name="status_default">Default</string>
+
+    <string name="product">Producto</string>
+    <string name="ex_productprice">S/ 000.00</string>
+    <string name="idproduct">Id: </string>
+    <string name="product_total">Total</string>
+    <string name="ex_product_total">$000.00</string>
+    <string name="order">Compra</string>
+    <string name="search">Buscar</string>
+    <string name="mujer">MUJER</string>
+    <string name="hombre">HOMBRE</string>
+    <string name="ninos">NIÑOS</string>
+
+    <string name="warning">error</string>
+    <string name="delete">eliminar</string>
+
+    <string name="channel_client">Compras</string>
+    <string name="transaction_description">Notificaciones relacionado a compras realizadas</string>
+
+    <string name="action_title">Compra Exitosa</string>
+    <string name="action_body">¡Tu compra se ha realizado correctamente, continua explorando en nuestra tienda!</string>
+
+    <string name="action_title_data_config">Datos Actualizados</string>
+    <string name="action_body_data_config">¡Tu información personal ha sido actualizada correctamente!</string>
+
+    <string name="action_title_address_config">Dirección Actualizada</string>
+    <string name="action_body_address_config">¡Tu dirección ha sido actualizada correctamente!</string>
+
+    <string name="action_title_cards_config">Metodo de Pago Actualizado</string>
+    <string name="action_body_cards_config">¡Tu método de pago ha sido actualizado correctamente!</string>
+
+    <string name="action_title_welcome">¡Hola de nuevo!</string>
+    <string name="action_body_welcome">Conoce las nuevas reseñas en nuestra comunidad</string>
+
+    <string name="Comunidad_Smart">Bienvenido a la Comunidad Smart Boutique</string>
+
+    <string name="desc_back_button">Volver</string>
+    <string name="desc_edit_username">Editar nombre de usuario</string>
+    <string name="desc_edit_email">Editar correo electrónico</string>
+    <string name="desc_edit_password">Editar contraseña</string>
+    <string name="desc_edit_address">Editar dirección</string>
+    <string name="desc_edit_credit_card">Editar tarjeta de crédito</string>
+    <string name="desc_edit_debit_card">Editar tarjeta de débito</string>
+
+
+</resources>
