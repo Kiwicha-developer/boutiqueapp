@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "194215962880",
+    "project_id": "boutiquesmart-514a1",
+    "storage_bucket": "boutiquesmart-514a1.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:194215962880:android:c8e62ef3655e182ed16be5",
+        "android_client_info": {
+          "package_name": "com.cibertec.boutiquesmart"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA9fm4HTQUFWvRc1SNHYx76OxF5VqFdFPM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

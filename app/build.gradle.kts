@@ -58,6 +58,8 @@ dependencies {
     implementation("com.journeyapps:zxing-android-embedded:4.3.0")
 
     implementation("androidx.media:media:1.6.0")
+    implementation ("com.flaviofaria:kenburnsview:1.0.7")
+
 
     configurations.all{
         resolutionStrategy{

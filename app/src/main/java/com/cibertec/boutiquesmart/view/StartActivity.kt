@@ -5,24 +5,20 @@ import android.app.ActivityOptions
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
-import android.transition.TransitionInflater
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import com.cibertec.boutiquesmart.R
-import com.cibertec.boutiquesmart.model.BaseDatos
+import com.cibertec.boutiquesmart.controller.BaseDatos
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 
-class StartActivity : AppCompatActivity() {
-    val MYSTORE = BaseDatos.start()
-    //const val USERNAME = "com.cibertec.activity.USERNAME" //ubicacion donde el bundle guardara variable
-    //const val PRODUCTID = "com.cibertec.activity.PRODUCTID"
+val MYSTORE = BaseDatos.start()
+const val USERNAME = "com.cibertec.activity.USERNAME" //ubicacion donde el bundle guardara variable
+const val PRODUCTID = "com.cibertec.activity.PRODUCTID" //ubicacion donde el bundle guardara variable
 
+class StartActivity : AppCompatActivity() {
     private lateinit var inp_username: EditText
     private lateinit var inp_password: EditText
     private lateinit var btn_login: Button
@@ -39,15 +35,15 @@ class StartActivity : AppCompatActivity() {
         btn_signin = findViewById(R.id.start_btn_signin)
 
 
-        val transitionXml = TransitionInflater
-            .from(this).inflateTransition(R.transition.transition_activity).apply {
-                //excludeTarget(window.decorView.findViewById<View>(R.id.action_bar_container), true)
-                excludeTarget(android.R.id.statusBarBackground, true)
-                excludeTarget(android.R.id.navigationBarBackground, true)
-            }
+//        val transitionXml = TransitionInflater
+//            .from(this).inflateTransition(R.transition.transition_activity).apply {
+//                //excludeTarget(window.decorView.findViewById<View>(R.id.action_bar_container), true)
+//                excludeTarget(android.R.id.statusBarBackground, true)
+//                excludeTarget(android.R.id.navigationBarBackground, true)
+//            }
 
 
-        window.exitTransition = transitionXml
+//        window.exitTransition = transitionXml
 
 
         btn_login.setOnClickListener {
@@ -107,12 +103,12 @@ class StartActivity : AppCompatActivity() {
         verificarUsuarioGeneral() }
 
     fun verificarUsuarioGeneral() {
-        if (Firebase.auth.currentUser == null) {
-            Toast.makeText(this, "SIN USUARIO", Toast.LENGTH_SHORT).show()
+        // Puedes omitir la redirección automática al Home
+        if (Firebase.auth.currentUser != null) {
+            Toast.makeText(this, "Sesión previa detectada", Toast.LENGTH_SHORT).show()
+            // Aquí podrías mostrar un botón de "Continuar como [correo]" en lugar de redirigir
         } else {
-            Toast.makeText(this, Firebase.auth.currentUser?.email, Toast.LENGTH_SHORT).show()
-            val intent = Intent(this, HomeActivity::class.java)
-            startActivity(intent)
+            Toast.makeText(this, "Debes iniciar sesión", Toast.LENGTH_SHORT).show()
         }
     }
 

@@ -1,4 +1,10 @@
-package com.cibertec.boutiquesmart.model
+package com.cibertec.boutiquesmart.controller
+
+import com.cibertec.boutiquesmart.R
+import com.cibertec.boutiquesmart.model.Category
+import com.cibertec.boutiquesmart.model.Product
+import com.cibertec.boutiquesmart.model.RegisteredUser
+import com.cibertec.boutiquesmart.model.Store
 
 class BaseDatos {
     companion object Base {
