@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ProfileActivity">
+    tools:context=".view.ProfileActivity">
 
     <!-- Top Bar -->
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -27,7 +27,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:fontFamily="@font/nunito_regular"
-            android:text="@string/menu_cart"
+            android:text="@string/menu_profile"
             android:textColor="#393E46"
             android:textSize="18sp"
             android:textStyle="bold"
@@ -136,5 +136,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
+        app:itemIconTint="@color/bottom_nav_selected"
+        app:itemTextColor="@color/bottom_nav_selected"
         app:menu="@menu/navigation_menu"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

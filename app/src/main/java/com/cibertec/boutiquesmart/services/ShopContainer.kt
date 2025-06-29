@@ -1,7 +1,7 @@
-package com.cibertec.boutiquesmart.model
+package com.cibertec.boutiquesmart.services
 
 class ShopContainer(
-    var image: Int,
+    var image: String,
     var title: String,
     var location: Float
 )

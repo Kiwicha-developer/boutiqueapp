@@ -23,4 +23,6 @@
     <color name="secondaryTextColor">#fafafa</color>
     <color name="principal">#8199BC</color>
     <color name="gray">#BBBBBB</color>
+    <color name="bottom_nav_selected">#0277BD</color> <!-- Azul seleccionado -->
+    <color name="bottom_nav_unselected">#757575</color> <!-- Gris sin seleccionar -->
 </resources>

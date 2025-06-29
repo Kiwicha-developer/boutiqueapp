@@ -14,6 +14,7 @@
     <string name="btn_update">Actualizar</string>
     <string name="btn_addCart">Agregar a carrito</string>
     <string name="btn_getAddress">Obtener direccion</string>
+    <string name="configuracion">Configuracion</string>
 
     <string name="username">Nombre de usuario</string>
     <string name="email">Correo</string>

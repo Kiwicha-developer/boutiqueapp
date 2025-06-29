@@ -1,11 +1,13 @@
 package com.cibertec.boutiquesmart.model
 
-data class Product(
-    val idProduct: Int,
+data class Product (
+    val id: Int,
     val name: String,
-    val category: Category?,
+    val category: Category,
     val color: String,
     val price: Float,
-    val image: Int,
-    var quantity: Map<String, Int>?
+    val image: String,
+    val stock_s: Int,
+    val stock_m: Int,
+    val stock_x: Int
 )

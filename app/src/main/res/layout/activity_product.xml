@@ -4,17 +4,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ProductActivity">
+    tools:context=".view.ProductActivity">
 
     <Button
         android:id="@+id/product_btn_return"
-        style="@style/returnButton"
-        android:background="@color/gray"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:minHeight="48dp"
+        android:minWidth="48dp"
+        android:padding="8dp"
+        android:background="@color/transparent"
+        android:drawableLeft="@drawable/ic_return"
         android:layout_marginTop="16dp"
         android:layout_marginStart="16dp"
         app:cornerRadius="16dp"
-        android:layout_gravity="center_vertical"
-        android:scaleType="centerCrop"
         android:contentDescription="@string/configuration"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"

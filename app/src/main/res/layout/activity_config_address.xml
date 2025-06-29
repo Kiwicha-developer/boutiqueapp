@@ -1,109 +1,111 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context=".view.ConfigAddressActivity">
 
+    <!-- Barra superior -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/config_address_top_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#FFFFFF"
         android:elevation="8dp"
-        android:gravity="center"
-        android:orientation="horizontal"
         android:paddingHorizontal="32dp"
         android:paddingVertical="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintEnd_toEndOf="parent">
 
+        <!-- Botón regresar -->
         <Button
             android:id="@+id/config_address_btn_return"
-            style="@style/returnButton"
-            android:layout_gravity="center_vertical"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:text="←"
             android:contentDescription="@string/desc_back_button"
-            android:minWidth="48dp"
-            android:minHeight="48dp"
-            app:layout_constraintEnd_toStartOf="@+id/config_address"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
 
+        <!-- Título -->
         <TextView
             android:id="@+id/config_address"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/nunito_regular"
             android:text="@string/menu_address"
             android:textColor="#393E46"
             android:textSize="18sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:fontFamily="@font/nunito_regular"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-
+    <!-- Etiqueta dirección -->
     <TextView
         android:id="@+id/config_address_label_address"
-        style="@style/config_account_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/menu_address"
+        android:textStyle="bold"
+        android:textSize="16sp"
         android:layout_marginTop="28dp"
         android:layout_marginStart="32dp"
-        android:text="@string/menu_address"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/config_address_top_bar" />
+        app:layout_constraintTop_toBottomOf="@id/config_address_top_bar"
+        app:layout_constraintStart_toStartOf="parent" />
 
+    <!-- Botón editar dirección -->
     <Button
         android:id="@+id/config_address_btn_edit_address"
-        style="@style/editButton"
-        android:layout_marginBottom="4dp"
-        android:layout_marginEnd="32dp"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:text="✎"
         android:contentDescription="@string/desc_edit_address"
-        android:minWidth="48dp"
-        android:minHeight="48dp"
-        app:layout_constraintBottom_toTopOf="@+id/config_address_input_address"
+        android:layout_marginEnd="32dp"
+        app:layout_constraintBottom_toTopOf="@id/config_address_input_address"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/config_address_label_address" />
+        app:layout_constraintStart_toEndOf="@id/config_address_label_address" />
 
+    <!-- Campo de dirección -->
     <EditText
         android:id="@+id/config_address_input_address"
-        style="@style/config_account_field"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
         android:layout_marginHorizontal="32dp"
-        android:autofillHints="postalAddress"
         android:hint="@string/menu_address"
         android:inputType="textPostalAddress"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:autofillHints="postalAddress"
+        app:layout_constraintTop_toBottomOf="@id/config_address_label_address"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/config_address_label_address" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
-
+    <!-- Botón obtener dirección -->
     <Button
         android:id="@+id/config_adress_btn_obtener"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:fontFamily="@font/nunitobold"
+        android:layout_marginTop="16dp"
         android:text="@string/btn_getAddress"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/config_address_input_address"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/config_address_input_address" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
+    <!-- Botón actualizar dirección -->
     <Button
         android:id="@+id/config_adress_btn_update"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:fontFamily="@font/nunitobold"
+        android:layout_marginTop="16dp"
         android:text="@string/btn_update"
         android:visibility="invisible"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/config_adress_btn_obtener"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/config_adress_btn_obtener" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -22,6 +22,16 @@
             </intent-filter>
         </activity>
         <activity android:name=".view.HomeActivity" />
+        <activity android:name=".view.SearchProductActivity" />
+        <activity android:name=".view.ProductActivity" />
+        <activity android:name=".view.CartActivity" />
+        <activity android:name=".view.ComunityActivity" />
+        <activity android:name=".view.ConfigAccountDataActivity" />
+        <activity android:name=".view.ConfigAddressActivity" />
+        <activity android:name=".view.ConfigPaymentActivity" />
+        <activity android:name=".view.OrderActivity" />
+        <activity android:name=".view.ProfileActivity" />
     </application>
-
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 </manifest>

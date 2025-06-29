@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFFFFF"
-    tools:context=".CommunityActivity">
+    tools:context=".view.ComunityActivity">
 
     <!-- Top Bar -->
     <LinearLayout
@@ -92,6 +92,8 @@
         android:layout_width="match_parent"
         android:layout_height="75dp"
         app:menu="@menu/navigation_menu"
+        app:itemIconTint="@color/bottom_nav_selected"
+        app:itemTextColor="@color/bottom_nav_selected"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />

@@ -1,4 +1,4 @@
-package com.cibertec.boutiquesmart.controller
+package com.cibertec.boutiquesmart.services
 
 import android.view.LayoutInflater
 import android.view.View
@@ -6,7 +6,6 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.cibertec.boutiquesmart.R
-import com.cibertec.boutiquesmart.model.ShopContainer
 import com.flaviofaria.kenburnsview.KenBurnsView
 import com.squareup.picasso.Picasso
 
@@ -36,7 +35,13 @@ class ShopContainerAdapter(private val shopContainers: MutableList<ShopContainer
         private val textTitle: TextView
         private val textStarRating: TextView
         fun setLocationData(shopContainer: ShopContainer) {
-            shopContainer.image?.let { Picasso.get().load(it).into(kbvLocation) }
+            shopContainer.image?.let { name ->
+                val context = itemView.context
+                val resId = context.resources.getIdentifier(name, "drawable", context.packageName)
+                if (resId != 0) {
+                    kbvLocation.setImageResource(resId)
+                }
+            }
             textTitle.text = shopContainer.title
         }
 
