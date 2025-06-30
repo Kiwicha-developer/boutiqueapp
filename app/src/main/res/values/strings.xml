@@ -74,6 +74,11 @@
     <string name="desc_edit_address">Editar dirección</string>
     <string name="desc_edit_credit_card">Editar tarjeta de crédito</string>
     <string name="desc_edit_debit_card">Editar tarjeta de débito</string>
+    <string name="producto">Producto</string>
+    <string name="categoria">categoría</string>
+    <string name="precio">Precio</string>
+    <string name="confirmar_pedido">Confirmar pedido</string>
+    <string name="totalSoles">Total: S/0.00</string>
 
 
 </resources>

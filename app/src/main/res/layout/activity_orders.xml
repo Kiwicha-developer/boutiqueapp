@@ -41,7 +41,6 @@
             android:src="@drawable/ic_settings"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:scaleType="centerInside"
-            android:onClick="showPopup"
             android:contentDescription="@string/configuration"
             app:layout_constraintBottom_toBottomOf="@+id/order_title"
             app:layout_constraintEnd_toEndOf="parent"
@@ -105,6 +104,8 @@
             app:layout_constraintEnd_toEndOf="@+id/order_img_history"
             app:layout_constraintStart_toStartOf="@+id/order_img_history"
             app:layout_constraintTop_toBottomOf="@+id/order_img_history" />
+
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <!-- SCROLL + LISTADO DE PEDIDOS -->
@@ -129,6 +130,35 @@
                 android:layout_margin="16dp" />
         </LinearLayout>
     </ScrollView>
+
+
+    <TextView
+        android:id="@+id/txtTotal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/totalSoles"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/btnConfirm" />
+
+    <Button
+        android:id="@+id/btnConfirm"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/confirmar_pedido"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/order_menu" />
+
+
 
     <!-- MENÚ INFERIOR -->
     <com.google.android.material.bottomnavigation.BottomNavigationView
