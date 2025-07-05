@@ -4,15 +4,17 @@ import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 
-class DBHelper(context: Context): SQLiteOpenHelper(context,"boutique.db",null,1) {
+class DBHelper(context: Context): SQLiteOpenHelper(context,"boutique.db",null,2) {
     override fun onCreate(db: SQLiteDatabase) {
         db.execSQL("""
         CREATE TABLE users (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
                 username TEXT UNIQUE,
+                nombre TEXT,
+                apellido TEXT,
                 email TEXT,
                 password TEXT,
-                addres TEXT,
+                address TEXT,
                 payment TEXT,
                 typePayment TEXT
             )

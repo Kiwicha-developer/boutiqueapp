@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="24dp">
+
+        <!-- Título -->
+        <TextView
+            android:id="@+id/edit_address_titulo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="AGREGAR DIRECCIÓN"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="#000080"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+
+        <!-- Nombre dirección -->
+        <EditText
+            android:id="@+id/edit_address_nombre"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:hint="Nombre de ubicación"
+            android:layout_marginTop="16dp"
+            app:layout_constraintTop_toBottomOf="@id/edit_address_titulo"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <!-- Departamento -->
+
+        <EditText
+            android:id="@+id/edit_address_departamento"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:hint="Departamento"
+            android:layout_marginTop="12dp"
+            app:layout_constraintTop_toBottomOf="@id/edit_address_nombre"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <!-- Provincia -->
+        <EditText
+            android:id="@+id/edit_address_provincia"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:hint="Provincia"
+            android:layout_marginTop="12dp"
+            app:layout_constraintTop_toBottomOf="@id/edit_address_departamento"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <!-- Distrito -->
+        <EditText
+            android:id="@+id/edit_address_distrito"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:hint="Distrito"
+            android:layout_marginTop="12dp"
+            app:layout_constraintTop_toBottomOf="@id/edit_address_provincia"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <EditText
+            android:id="@+id/edit_address_calle"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:hint="Calle"
+            android:layout_marginTop="12dp"
+            app:layout_constraintTop_toBottomOf="@id/edit_address_distrito"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <!-- Número telefónico -->
+        <EditText
+            android:id="@+id/edit_address_phone"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:hint="Número telefónico"
+            android:inputType="phone"
+            android:layout_marginTop="12dp"
+            app:layout_constraintTop_toBottomOf="@id/edit_address_calle"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <!-- Botón guardar -->
+        <Button
+            android:id="@+id/edit_address_btn_save"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Guardar"
+            android:layout_marginTop="24dp"
+            app:layout_constraintTop_toBottomOf="@id/edit_address_phone"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <ImageView
+            android:id="@+id/config_data_logo"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/ic_logo"
+            android:layout_marginTop="16dp"
+            app:layout_constraintTop_toBottomOf="@id/edit_address_btn_save"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

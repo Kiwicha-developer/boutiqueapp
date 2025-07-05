@@ -10,9 +10,11 @@ class UserRepository(private val dbHelper : SQLiteOpenHelper) {
         val db = dbHelper.writableDatabase
         val values = ContentValues().apply {
             put("username", user.username)
+            put("nombre", user.nombre)
+            put("apellido", user.apellido)
             put("email", user.email)
             put("password", user.password)
-            put("addres", user.address)
+            put("address", user.address)
             put("payment", user.payment)
             put("typePayment", user.typePayment)
         }
@@ -23,9 +25,11 @@ class UserRepository(private val dbHelper : SQLiteOpenHelper) {
         val db = dbHelper.writableDatabase
         val values = ContentValues().apply {
             put("username", user.username)
+            put("nombre", user.nombre)
+            put("apellido", user.apellido)
             put("email", user.email)
             put("password", user.password)
-            put("addres", user.address)
+            put("address", user.address)
             put("payment", user.payment)
             put("typePayment", user.typePayment)
         }
@@ -39,9 +43,11 @@ class UserRepository(private val dbHelper : SQLiteOpenHelper) {
             val user = User(
                 id = cursor.getInt(cursor.getColumnIndexOrThrow("id")),
                 username = cursor.getString(cursor.getColumnIndexOrThrow("username")),
+                nombre = cursor.getString(cursor.getColumnIndexOrThrow("nombre")),
+                apellido = cursor.getString(cursor.getColumnIndexOrThrow("apellido")),
                 email = cursor.getString(cursor.getColumnIndexOrThrow("email")),
                 password = cursor.getString(cursor.getColumnIndexOrThrow("password")),
-                address = cursor.getString(cursor.getColumnIndexOrThrow("addres")),
+                address = cursor.getString(cursor.getColumnIndexOrThrow("address")),
                 payment = cursor.getString(cursor.getColumnIndexOrThrow("payment")),
                 typePayment = cursor.getString(cursor.getColumnIndexOrThrow("typePayment"))
             )
@@ -63,9 +69,11 @@ class UserRepository(private val dbHelper : SQLiteOpenHelper) {
             val user = User(
                 id = cursor.getInt(cursor.getColumnIndexOrThrow("id")),
                 username = cursor.getString(cursor.getColumnIndexOrThrow("username")),
+                nombre = cursor.getString(cursor.getColumnIndexOrThrow("nombre")),
+                apellido = cursor.getString(cursor.getColumnIndexOrThrow("apellido")),
                 email = cursor.getString(cursor.getColumnIndexOrThrow("email")),
                 password = cursor.getString(cursor.getColumnIndexOrThrow("password")),
-                address = cursor.getString(cursor.getColumnIndexOrThrow("addres")),
+                address = cursor.getString(cursor.getColumnIndexOrThrow("address")),
                 payment = cursor.getString(cursor.getColumnIndexOrThrow("payment")),
                 typePayment = cursor.getString(cursor.getColumnIndexOrThrow("typePayment"))
             )
@@ -86,9 +94,11 @@ class UserRepository(private val dbHelper : SQLiteOpenHelper) {
                 val user = User(
                     id = cursor.getInt(cursor.getColumnIndexOrThrow("id")),
                     username = cursor.getString(cursor.getColumnIndexOrThrow("username")),
+                    nombre = cursor.getString(cursor.getColumnIndexOrThrow("nombre")),
+                    apellido = cursor.getString(cursor.getColumnIndexOrThrow("apellido")),
                     email = cursor.getString(cursor.getColumnIndexOrThrow("email")),
                     password = cursor.getString(cursor.getColumnIndexOrThrow("password")),
-                    address = cursor.getString(cursor.getColumnIndexOrThrow("addres")),
+                    address = cursor.getString(cursor.getColumnIndexOrThrow("address")),
                     payment = cursor.getString(cursor.getColumnIndexOrThrow("payment")),
                     typePayment = cursor.getString(cursor.getColumnIndexOrThrow("typePayment"))
                 )

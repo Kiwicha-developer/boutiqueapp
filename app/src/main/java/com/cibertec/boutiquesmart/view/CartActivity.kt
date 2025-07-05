@@ -2,6 +2,7 @@ package com.cibertec.boutiquesmart.view
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.cibertec.boutiquesmart.R
 import com.cibertec.boutiquesmart.controller.DBHelper
@@ -94,6 +95,15 @@ class CartActivity : AppCompatActivity() {
         }
 
         binding.cartTxtTotal.text = "${totalPrice ?: 0.00}"
+
+        binding.cartBtnShop.setOnClickListener{
+
+            cartUser.forEach {
+                cartRepository.removeFromCart(userId, it.id)
+            }
+            Toast.makeText(this, "Pedido realizado con éxito", Toast.LENGTH_SHORT).show()
+            finish()
+        }
     }
 
 }

@@ -79,6 +79,8 @@ class StartActivity : AppCompatActivity() {
             username = user,
             password = pass,
             email = "${user}@boutique.com",
+            nombre= "",
+            apellido = "",
             typePayment = "",
             address = "",
             payment = ""
