@@ -66,9 +66,9 @@ class ConfigPaymentActivity : AppCompatActivity() {
 
         // Cargar tarjeta si existe
         val user = userRepository.getUserById(userId)
-        if (user != null && user.payment.isNotEmpty()) {
+        if (user != null && user.cardNumber.isNotEmpty()) {
             // Si ya tiene una tarjeta guardada, la mostramos
-            inputCard.setText(user.payment)
+            inputCard.setText(user.cardNumber)
         }
     }
 }

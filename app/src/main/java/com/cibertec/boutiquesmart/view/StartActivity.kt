@@ -80,15 +80,16 @@ class StartActivity : AppCompatActivity() {
             password = pass,
             email = "${user}@boutique.com",
             nombre= "",
-            apellido = "",
-            typePayment = "",
+            documento = "",
             address = "",
-            payment = ""
+            cardNumber = "",
+            cardVencimiento = "",
+            cardCVV = ""
         )
 
         val result = userRepository.insertUser(userModel)
         if (result != -1L) {
-            Toast.makeText(this, "Usuario insertado con ID: $result", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Usuario Registrado", Toast.LENGTH_SHORT).show()
         } else {
             Toast.makeText(this, "Error al insertar usuario", Toast.LENGTH_SHORT).show()
         }

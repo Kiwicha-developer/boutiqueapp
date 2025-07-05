@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <application
+        android:usesCleartextTraffic="true"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -33,6 +34,22 @@
         <activity android:name=".view.AddCardActivity" />
         <activity android:name=".view.OrderActivity" />
         <activity android:name=".view.ProfileActivity" />
+        <activity
+            android:name=".services.CongratsActivity"
+            android:exported="true"
+            android:label="deepLink" >
+
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <!-- Accepts URIs that begin with "yourapp://congrats" -->
+                <data android:scheme="yourapp"
+                    android:host="congrats" />
+
+            </intent-filter>
+        </activity>
+
     </application>
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />

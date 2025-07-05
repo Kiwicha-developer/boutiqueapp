@@ -8,6 +8,7 @@
     <string name="menu_home">Inicio</string>
     <string name="menu_cart">Carrito</string>
     <string name="menu_profile">Perfil</string>
+    <string name="menu_order">Pedidos</string>
 
     <string name="btn_logIn">Iniciar sesión</string>
     <string name="btn_signIn">Registrarse</string>
@@ -43,6 +44,7 @@
     <string name="mujer">MUJER</string>
     <string name="hombre">HOMBRE</string>
     <string name="ninos">NIÑOS</string>
+    <string name="item_cantidad">Cantidad: 1</string>
 
     <string name="warning">error</string>
     <string name="delete">eliminar</string>

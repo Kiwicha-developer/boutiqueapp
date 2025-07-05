@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.cibertec.boutiquesmart.controller.DBHelper
 import com.cibertec.boutiquesmart.databinding.FragmentListBinding
+import com.cibertec.boutiquesmart.model.Cart
 import com.cibertec.boutiquesmart.model.Product
 import com.cibertec.boutiquesmart.model.User
 import com.cibertec.boutiquesmart.repository.CartRepository
@@ -54,14 +55,15 @@ class ListFragment : Fragment() {
     private fun setUpRecyclerView() {
         binding.recyclerProducts.setHasFixedSize(true)
         binding.recyclerProducts.layoutManager = LinearLayoutManager(requireContext())
-        mAdapter = RecyclerAdapterShop(requireActivity(), getProducts(), user.id)
+        mAdapter = RecyclerAdapterShop(requireActivity(), getCartItems(), user.id)
         binding.recyclerProducts.adapter = mAdapter
     }
 
-    private fun getProducts(): MutableList<Product> {
-        return if (user != null)
+    private fun getCartItems(): MutableList<Cart> {
+        return if (user != null && user.id > 0) {
             cartRepository.getCartByUserId(user.id).toMutableList()
-        else
-            productRepository.getAllProducts().toMutableList()
+        } else {
+            mutableListOf()
+        }
     }
 }

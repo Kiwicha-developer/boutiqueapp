@@ -11,12 +11,13 @@ class UserRepository(private val dbHelper : SQLiteOpenHelper) {
         val values = ContentValues().apply {
             put("username", user.username)
             put("nombre", user.nombre)
-            put("apellido", user.apellido)
+            put("documento", user.documento)
             put("email", user.email)
             put("password", user.password)
             put("address", user.address)
-            put("payment", user.payment)
-            put("typePayment", user.typePayment)
+            put("cardNumber", user.cardNumber)
+            put("cardVencimiento", user.cardVencimiento)
+            put("cardCVV", user.cardCVV)
         }
         return db.insert("users", null, values)
     }
@@ -26,12 +27,13 @@ class UserRepository(private val dbHelper : SQLiteOpenHelper) {
         val values = ContentValues().apply {
             put("username", user.username)
             put("nombre", user.nombre)
-            put("apellido", user.apellido)
+            put("documento", user.documento)
             put("email", user.email)
             put("password", user.password)
             put("address", user.address)
-            put("payment", user.payment)
-            put("typePayment", user.typePayment)
+            put("cardNumber", user.cardNumber)
+            put("cardVencimiento", user.cardVencimiento)
+            put("cardCVV", user.cardCVV)
         }
         return db.update("users", values, "id = ?", arrayOf(user.id.toString()))
     }
@@ -44,12 +46,13 @@ class UserRepository(private val dbHelper : SQLiteOpenHelper) {
                 id = cursor.getInt(cursor.getColumnIndexOrThrow("id")),
                 username = cursor.getString(cursor.getColumnIndexOrThrow("username")),
                 nombre = cursor.getString(cursor.getColumnIndexOrThrow("nombre")),
-                apellido = cursor.getString(cursor.getColumnIndexOrThrow("apellido")),
+                documento = cursor.getString(cursor.getColumnIndexOrThrow("documento")),
                 email = cursor.getString(cursor.getColumnIndexOrThrow("email")),
                 password = cursor.getString(cursor.getColumnIndexOrThrow("password")),
                 address = cursor.getString(cursor.getColumnIndexOrThrow("address")),
-                payment = cursor.getString(cursor.getColumnIndexOrThrow("payment")),
-                typePayment = cursor.getString(cursor.getColumnIndexOrThrow("typePayment"))
+                cardNumber = cursor.getString(cursor.getColumnIndexOrThrow("cardNumber")),
+                cardVencimiento = cursor.getString(cursor.getColumnIndexOrThrow("cardVencimiento")),
+                cardCVV = cursor.getString(cursor.getColumnIndexOrThrow("cardCVV"))
             )
             cursor.close()
             user
@@ -70,12 +73,13 @@ class UserRepository(private val dbHelper : SQLiteOpenHelper) {
                 id = cursor.getInt(cursor.getColumnIndexOrThrow("id")),
                 username = cursor.getString(cursor.getColumnIndexOrThrow("username")),
                 nombre = cursor.getString(cursor.getColumnIndexOrThrow("nombre")),
-                apellido = cursor.getString(cursor.getColumnIndexOrThrow("apellido")),
+                documento = cursor.getString(cursor.getColumnIndexOrThrow("documento")),
                 email = cursor.getString(cursor.getColumnIndexOrThrow("email")),
                 password = cursor.getString(cursor.getColumnIndexOrThrow("password")),
                 address = cursor.getString(cursor.getColumnIndexOrThrow("address")),
-                payment = cursor.getString(cursor.getColumnIndexOrThrow("payment")),
-                typePayment = cursor.getString(cursor.getColumnIndexOrThrow("typePayment"))
+                cardNumber = cursor.getString(cursor.getColumnIndexOrThrow("cardNumber")),
+                cardVencimiento = cursor.getString(cursor.getColumnIndexOrThrow("cardVencimiento")),
+                cardCVV = cursor.getString(cursor.getColumnIndexOrThrow("cardCVV"))
             )
             cursor.close()
             user
@@ -95,12 +99,13 @@ class UserRepository(private val dbHelper : SQLiteOpenHelper) {
                     id = cursor.getInt(cursor.getColumnIndexOrThrow("id")),
                     username = cursor.getString(cursor.getColumnIndexOrThrow("username")),
                     nombre = cursor.getString(cursor.getColumnIndexOrThrow("nombre")),
-                    apellido = cursor.getString(cursor.getColumnIndexOrThrow("apellido")),
+                    documento = cursor.getString(cursor.getColumnIndexOrThrow("documento")),
                     email = cursor.getString(cursor.getColumnIndexOrThrow("email")),
                     password = cursor.getString(cursor.getColumnIndexOrThrow("password")),
                     address = cursor.getString(cursor.getColumnIndexOrThrow("address")),
-                    payment = cursor.getString(cursor.getColumnIndexOrThrow("payment")),
-                    typePayment = cursor.getString(cursor.getColumnIndexOrThrow("typePayment"))
+                    cardNumber = cursor.getString(cursor.getColumnIndexOrThrow("cardNumber")),
+                    cardVencimiento = cursor.getString(cursor.getColumnIndexOrThrow("cardVencimiento")),
+                    cardCVV = cursor.getString(cursor.getColumnIndexOrThrow("cardCVV"))
                 )
                 users.add(user)
             } while (cursor.moveToNext())

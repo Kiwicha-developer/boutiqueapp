@@ -11,12 +11,13 @@ class DBHelper(context: Context): SQLiteOpenHelper(context,"boutique.db",null,2)
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
                 username TEXT UNIQUE,
                 nombre TEXT,
-                apellido TEXT,
+                documento TEXT,
                 email TEXT,
                 password TEXT,
                 address TEXT,
-                payment TEXT,
-                typePayment TEXT
+                cardNumber TEXT,
+                cardVencimiento TEXT,
+                cardCVV TEXT
             )
         """.trimIndent())
 
@@ -46,8 +47,10 @@ class DBHelper(context: Context): SQLiteOpenHelper(context,"boutique.db",null,2)
             CREATE TABLE cart (
                 user_id INTEGER,
                 product_id INTEGER,
+                cantidad INTEGER DEFAULT 1,
                 FOREIGN KEY(user_id) REFERENCES users(id) ON DELETE CASCADE,
-                FOREIGN KEY(product_id) REFERENCES products(id) ON DELETE CASCADE
+                FOREIGN KEY(product_id) REFERENCES products(id) ON DELETE CASCADE,
+                UNIQUE(user_id, product_id)
             )
         """.trimIndent())
 
@@ -66,7 +69,7 @@ class DBHelper(context: Context): SQLiteOpenHelper(context,"boutique.db",null,2)
         db.execSQL("INSERT INTO categories(id, name) VALUES (3, 'Niño')")
 
         // Productos Dama (category_id = 1)
-        db.execSQL("INSERT INTO products VALUES (1,'Blusa estampada',1,'Blanca',130,'productm1',100,50,100)")
+        db.execSQL("INSERT INTO products VALUES (1,'Blusa estampada',1,'Blanca',0.10,'productm1',100,50,100)")
         db.execSQL("INSERT INTO products VALUES (2,'Blusa de tirantes',1,'Blanco',300,'productm2',100,50,100)")
         db.execSQL("INSERT INTO products VALUES (3,'Crop top con letras',1,'Gris',350,'productm3',100,50,100)")
         db.execSQL("INSERT INTO products VALUES (4,'Vestido largo',1,'Verde',900,'productm4',100,50,100)")

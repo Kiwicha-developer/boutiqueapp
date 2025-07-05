@@ -2,6 +2,7 @@ package com.cibertec.boutiquesmart.view
 
 import android.content.Intent
 import android.os.Bundle
+import android.text.Html
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.cibertec.boutiquesmart.R
@@ -49,18 +50,18 @@ class ComunityActivity : AppCompatActivity(){
             .addOnSuccessListener { result ->
                 val builder = StringBuilder()
 
-                for (document in result){
-                    val user = document.getString("usuario") ?: 0
+                for (document in result) {
+                    val user = document.getString("usuario") ?: "Anónimo"
                     val title = document.getString("title") ?: "Sin título"
                     val body = document.getString("body") ?: "Sin contenido"
 
-                    builder.appendLine("\n--------------------------------------")
-                    builder.appendLine("Post: $user")
-                    builder.appendLine("Título: $title")
-                    builder.appendLine(body)
+                    builder.appendLine("<br>--------------------------------------<br>")
+                    builder.appendLine("$user<br>")
+                    builder.appendLine("<b>$title </b><br>")
+                    builder.appendLine("$body<br>")
                 }
 
-                jsonText.text = builder.toString()
+                jsonText.text = Html.fromHtml(builder.toString(), Html.FROM_HTML_MODE_LEGACY)
             }
             .addOnFailureListener { exception ->
                 jsonText.text = "Error: ${exception.message}"

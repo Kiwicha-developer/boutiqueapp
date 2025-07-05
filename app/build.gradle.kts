@@ -64,7 +64,10 @@ dependencies {
     implementation ("com.google.android.material:material:1.11.0")
     implementation ("com.google.android.gms:play-services-location:21.0.1")
 
-
+    implementation ("com.mercadopago.android.px:checkout:4.+")
+    implementation ("androidx.lifecycle:lifecycle-runtime-ktx:2.7.0")
+    implementation ("androidx.browser:browser:1.4.0")
+    implementation("com.squareup.okhttp3:okhttp:4.12.0")
     configurations.all{
         resolutionStrategy{
             force("androidx.activity:activity:1.8.2")

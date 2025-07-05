@@ -45,7 +45,9 @@ class AddCardActivity : AppCompatActivity() {
                 else -> {
                     val user = userRepository.getUserById(userId)
                     if (user != null) {
-                        user.payment = number
+                        user.cardNumber = number
+                        user.cardVencimiento = expiry
+                        user.cardCVV = cvv
                         userRepository.updateUser(user)
                         Toast.makeText(this, "Tarjeta agregada", Toast.LENGTH_SHORT).show()
                         val intent = Intent(this, ConfigPaymentActivity::class.java)

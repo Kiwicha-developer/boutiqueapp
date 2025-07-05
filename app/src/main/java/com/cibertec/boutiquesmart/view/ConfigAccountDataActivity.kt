@@ -22,7 +22,7 @@ class ConfigAccountDataActivity : AppCompatActivity() {
     private lateinit var returnIcon: Button
     private lateinit var inputUsername: EditText
     private lateinit var inputName: EditText
-    private lateinit var inputLastname: EditText
+    private lateinit var inputDocument: EditText
     private lateinit var inputEmail: EditText
     private lateinit var inputPassword: EditText
     private lateinit var updateButton: Button
@@ -37,7 +37,7 @@ class ConfigAccountDataActivity : AppCompatActivity() {
         returnIcon = findViewById(R.id.config_data_btn_return)
         inputUsername = findViewById(R.id.config_data_input_username)
         inputName = findViewById(R.id.config_data_input_name)
-        inputLastname = findViewById(R.id.config_data_input_lastname)
+        inputDocument = findViewById(R.id.config_data_input_document)
         inputEmail = findViewById(R.id.config_data_input_email)
         inputPassword = findViewById(R.id.config_data_input_password)
         updateButton = findViewById(R.id.config_data_btn_update)
@@ -62,7 +62,7 @@ class ConfigAccountDataActivity : AppCompatActivity() {
         if (user != null) {
             inputUsername.setText(user.username)
             inputName.setText(user.nombre)
-            inputLastname.setText(user.apellido)
+            inputDocument.setText(user.documento)
             inputEmail.setText(user.email)
 
             val watcher = object : TextWatcher {
@@ -75,7 +75,7 @@ class ConfigAccountDataActivity : AppCompatActivity() {
 
             inputUsername.addTextChangedListener(watcher)
             inputName.addTextChangedListener(watcher)
-            inputLastname.addTextChangedListener(watcher)
+            inputDocument.addTextChangedListener(watcher)
             inputEmail.addTextChangedListener(watcher)
             inputPassword.addTextChangedListener(watcher)
 
@@ -98,7 +98,7 @@ class ConfigAccountDataActivity : AppCompatActivity() {
         builder.setPositiveButton("Sí") { dialog, _ ->
             val newUsername = inputUsername.text.toString().trim()
             val newName = inputName.text.toString().trim()
-            val newLast = inputLastname.text.toString().trim()
+            val newDocument = inputDocument.text.toString().trim()
             val newEmail = inputEmail.text.toString().trim()
             val newPass = inputPassword.text.toString().trim()
 
@@ -109,8 +109,8 @@ class ConfigAccountDataActivity : AppCompatActivity() {
                 newName.isBlank() -> {
                     Toast.makeText(this, "El nombre es obligatorio", Toast.LENGTH_SHORT).show()
                 }
-                newLast.isBlank() -> {
-                    Toast.makeText(this, "El apellido es obligatorio", Toast.LENGTH_SHORT).show()
+                newDocument.isBlank() -> {
+                    Toast.makeText(this, "El documento es obligatorio", Toast.LENGTH_SHORT).show()
                 }
                 newEmail.isBlank() -> {
                     Toast.makeText(this, "El correo electrónico es obligatorio", Toast.LENGTH_SHORT).show()
@@ -127,7 +127,7 @@ class ConfigAccountDataActivity : AppCompatActivity() {
                 else -> {
                     user.username = newUsername
                     user.nombre = newName
-                    user.apellido = newLast
+                    user.documento = newDocument
                     user.email = newEmail
                     user.password = newPass
 

@@ -4,9 +4,10 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.cibertec.boutiquesmart.databinding.ItemCartBinding
+import com.cibertec.boutiquesmart.model.Cart
 import com.cibertec.boutiquesmart.model.Product
 
-class CartAdapter(private val items: List<Product>) :
+class CartAdapter(private val items: List<Cart>) :
     RecyclerView.Adapter<CartAdapter.CartViewHolder>() {
 
     inner class CartViewHolder(val binding: ItemCartBinding) :
@@ -19,9 +20,9 @@ class CartAdapter(private val items: List<Product>) :
 
     override fun onBindViewHolder(holder: CartViewHolder, position: Int) {
         val item = items[position]
-        holder.binding.txtProductName.text = item.name
-        holder.binding.txtProductPrice.text = "S/%.2f".format(item.price)
-        holder.binding.txtProductCategory.text = item.category.name
+        holder.binding.txtProductName.text = item.product.name
+        holder.binding.txtProductPrice.text = "S/%.2f".format(item.product.price)
+        holder.binding.txtProductCategory.text = item.product.category.name
     }
 
     override fun getItemCount(): Int = items.size
